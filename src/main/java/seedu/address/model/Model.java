@@ -74,6 +74,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given person from the given concert. The person and concert must exist in the address book,
+     * and the person must be in the concert group.
+     */
+    void deletePersonFromConcert(Concert concert, Person person);
+
+    /**
      * Adds the given person. {@code person} must not already exist in the address book.
      */
     void addPerson(Person person);

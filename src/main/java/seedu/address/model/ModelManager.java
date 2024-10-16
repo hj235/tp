@@ -114,6 +114,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePersonFromConcert(Concert concert, Person person) {
+        addressBook.removePersonFromConcert(concert, person);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

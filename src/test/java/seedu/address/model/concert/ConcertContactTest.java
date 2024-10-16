@@ -32,7 +32,7 @@ public class ConcertContactTest {
         concertListTest.add(contactTest1);
         concertListTest.add(contactTest2);
 
-        assertEquals(concertListTest, contactTest1.getConcertContactList(COACHELLA));
+        assertEquals(concertListTest, ConcertContact.getConcertContactList(COACHELLA));
     }
 
     @Test

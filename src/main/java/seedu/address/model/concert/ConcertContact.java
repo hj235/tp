@@ -35,6 +35,24 @@ public class ConcertContact {
         addContactToConcert(this); //instantly adds Person to Concert list as ConcertContact created
     }
 
+    /**
+     * Overloaded constructor for Concert Contact. Used for searching through the existing map of concertContacts for
+     * specific ConcertContacts.
+     *
+     * @param person
+     * @param concert
+     */
+    public ConcertContact(Person person, Concert concert, boolean addContactToConcert) {
+        requireAllNonNull(person, concert);
+
+        this.person = person;
+        this.concert = concert;
+
+        if (addContactToConcert) {
+            addContactToConcert(this);
+        }
+    }
+
     public Person getPerson() {
         return person;
     }
@@ -56,8 +74,41 @@ public class ConcertContact {
      *
      * @return List of ConcertContact
      */
-    public List<ConcertContact> getConcertContactList(Concert concert) {
+    public static List<ConcertContact> getConcertContactList(Concert concert) {
         return Collections.unmodifiableList(concertContacts.get(concert));
+    }
+
+    public static boolean isAssociated(Concert concert, Person person) {
+        requireAllNonNull(concert, person);
+
+        if (!concertContacts.containsKey(concert)) {
+            return false;
+        }
+
+        List<ConcertContact> associatedPersonList = getConcertContactList(concert);
+        ConcertContact targetConcertContact = new ConcertContact(person, concert, false);
+
+        if (associatedPersonList.contains(targetConcertContact)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void removeContactFromConcert(Concert concert, Person person) {
+        requireAllNonNull(concert, person);
+
+        if (!concertContacts.containsKey(concert)) {
+            return;
+        }
+
+        if (!isAssociated(concert, person)) {
+            return;
+        }
+
+        List<ConcertContact> associatedPersonList = concertContacts.get(concert);
+        ConcertContact targetConcertContact = new ConcertContact(person, concert, false);
+        associatedPersonList.remove(targetConcertContact);
     }
 
     @Override
