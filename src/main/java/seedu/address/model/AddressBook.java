@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -109,8 +107,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void removePersonFromConcert(Concert concert, Person person) {
-        requireAllNonNull(concert, person);
-
         ConcertContact.removeContactFromConcert(concert, person);
     }
 
