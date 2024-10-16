@@ -53,7 +53,7 @@ public class DeletePersonFromConcertCommand extends Command {
         Person personToDelete = lastShownPersonList.get(personIndex.getZeroBased());
 
 
-        model.deletePerson(personToDelete);
+        model.deletePersonFromConcert(concertToEdit, personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_FROM_CONCERT_SUCCESS,
                 Messages.format(personToDelete), Messages.format(concertToEdit)));
     }
