@@ -64,5 +64,4 @@ public class Messages {
                .append(concert.getDate());
         return builder.toString();
     }
-
 }

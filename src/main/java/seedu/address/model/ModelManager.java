@@ -114,7 +114,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePersonFromConcert(Concert concert, Person person) {
+    public void deleteConcertContact(Concert concert, Person person) {
         addressBook.removePersonFromConcert(concert, person);
     }
 

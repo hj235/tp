@@ -27,13 +27,13 @@ public class DeleteConcertContactCommand extends Command {
             + "[" + PREFIX_CONCERT + "CONCERTINDEX] "
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CONCERT + "2";
 
-    public static final String MESSAGE_DELETE_PERSON_FROM_CONCERT_SUCCESS = "Deleted Person: %1$s from Concert: %1$s";
+    public static final String MESSAGE_DELETE_CONCERT_CONTACT_SUCCESS = "Deleted Person: %1$s from Concert: %1$s";
 
     private final Index concertIndex;
     private final Index personIndex;
 
 
-    public DeleteConcertContactCommand(Index concertIndex, Index personIndex) {
+    public DeleteConcertContactCommand(Index personIndex, Index concertIndex) {
         this.concertIndex = concertIndex;
         this.personIndex = personIndex;
     }
@@ -56,8 +56,8 @@ public class DeleteConcertContactCommand extends Command {
         Person personToDelete = lastShownPersonList.get(personIndex.getZeroBased());
 
 
-        model.deletePersonFromConcert(concertToEdit, personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_FROM_CONCERT_SUCCESS,
+        model.deleteConcertContact(concertToEdit, personToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_CONCERT_CONTACT_SUCCESS,
                 Messages.format(personToDelete), Messages.format(concertToEdit)));
     }
 
