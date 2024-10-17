@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,14 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeletePersonFromConcertCommand}.
  */
-public class DeletePersonFromConcertCommandTest {
+public class DeleteConcertContactCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonFromConcertCommand deletePersonFromConcertCommand = new DeletePersonFromConcertCommand(INDEX_FIRST_PERSON);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeletePersonFromConcertCommand deletePersonFromConcertCommand = new DeletePersonFromConcertCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeletePersonFromConcertCommand.MESSAGE_DELETE_PERSON_FROM_CONCERT_SUCCESS,
                 Messages.format(personToDelete));
@@ -51,10 +51,10 @@ public class DeletePersonFromConcertCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeletePersonFromConcertCommand deletePersonFromConcertCommand = new DeletePersonFromConcertCommand(INDEX_FIRST_PERSON);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_OBJECT.getZeroBased());
+        DeletePersonFromConcertCommand deletePersonFromConcertCommand = new DeletePersonFromConcertCommand(INDEX_FIRST_OBJECT);
 
         String expectedMessage = String.format(DeletePersonFromConcertCommand.MESSAGE_DELETE_PERSON_FROM_CONCERT_SUCCESS,
                 Messages.format(personToDelete));
@@ -68,9 +68,9 @@ public class DeletePersonFromConcertCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_OBJECT);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_OBJECT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
@@ -81,14 +81,14 @@ public class DeletePersonFromConcertCommandTest {
 
     @Test
     public void equals() {
-        DeletePersonFromConcertCommand deleteFirstCommand = new DeletePersonFromConcertCommand(INDEX_FIRST_PERSON);
-        DeletePersonFromConcertCommand deleteSecondCommand = new DeletePersonFromConcertCommand(INDEX_SECOND_PERSON);
+        DeletePersonFromConcertCommand deleteFirstCommand = new DeletePersonFromConcertCommand(INDEX_FIRST_OBJECT);
+        DeletePersonFromConcertCommand deleteSecondCommand = new DeletePersonFromConcertCommand(INDEX_SECOND_OBJECT);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeletePersonFromConcertCommand deleteFirstCommandCopy = new DeletePersonFromConcertCommand(INDEX_FIRST_PERSON);
+        DeletePersonFromConcertCommand deleteFirstCommandCopy = new DeletePersonFromConcertCommand(INDEX_FIRST_OBJECT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

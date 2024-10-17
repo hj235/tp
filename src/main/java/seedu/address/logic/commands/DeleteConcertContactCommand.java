@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -15,14 +17,15 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeletePersonFromConcertCommand extends Command {
+public class DeleteConcertContactCommand extends Command {
 
     public static final String COMMAND_WORD = "deletecc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: CONCERTINDEX (must be a positive integer) PERSONINDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+            + "Parameters: PERSONINDEX (must be a positive integer)"
+            + "[" + PREFIX_CONCERT + "CONCERTINDEX] "
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CONCERT + "2";
 
     public static final String MESSAGE_DELETE_PERSON_FROM_CONCERT_SUCCESS = "Deleted Person: %1$s from Concert: %1$s";
 
@@ -30,7 +33,7 @@ public class DeletePersonFromConcertCommand extends Command {
     private final Index personIndex;
 
 
-    public DeletePersonFromConcertCommand(Index concertIndex, Index personIndex) {
+    public DeleteConcertContactCommand(Index concertIndex, Index personIndex) {
         this.concertIndex = concertIndex;
         this.personIndex = personIndex;
     }
@@ -65,11 +68,11 @@ public class DeletePersonFromConcertCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeletePersonFromConcertCommand)) {
+        if (!(other instanceof DeleteConcertContactCommand)) {
             return false;
         }
 
-        DeletePersonFromConcertCommand otherDeletePersonFromConcertCommand = (DeletePersonFromConcertCommand) other;
+        DeleteConcertContactCommand otherDeletePersonFromConcertCommand = (DeleteConcertContactCommand) other;
         boolean sameConcertIndex = concertIndex.equals(otherDeletePersonFromConcertCommand.concertIndex);
         boolean samePersonIndex = personIndex.equals(otherDeletePersonFromConcertCommand.personIndex);
         return samePersonIndex && sameConcertIndex;
