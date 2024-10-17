@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONCERT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import static java.util.Objects.requireNonNull;
 
@@ -73,9 +72,9 @@ public class DeleteConcertContactCommand extends Command {
             return false;
         }
 
-        DeleteConcertContactCommand otherDeletePersonFromConcertCommand = (DeleteConcertContactCommand) other;
-        boolean sameConcertIndex = concertIndex.equals(otherDeletePersonFromConcertCommand.concertIndex);
-        boolean samePersonIndex = personIndex.equals(otherDeletePersonFromConcertCommand.personIndex);
+        DeleteConcertContactCommand otherDeleteConcertContactCommand = (DeleteConcertContactCommand) other;
+        boolean sameConcertIndex = concertIndex.equals(otherDeleteConcertContactCommand.concertIndex);
+        boolean samePersonIndex = personIndex.equals(otherDeleteConcertContactCommand.personIndex);
         return samePersonIndex && sameConcertIndex;
     }
 
